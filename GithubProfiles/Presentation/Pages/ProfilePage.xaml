@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="GithubProfiles.Presentation.Pages.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Github Profile"
+    Visual="Material">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Entry Placeholder="Github user" />
+                <Label Text="Username" />
+                <Label Text="Avatar" />
+                <Label Text="Followers" />
+                <Label Text="RepoCount" />
+
+                <Label Text="Top repos:" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

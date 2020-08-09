@@ -1,6 +1,5 @@
-﻿using System;
+﻿using GithubProfiles.Presentation.Pages;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace GithubProfiles
 {
@@ -10,7 +9,7 @@ namespace GithubProfiles
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new ProfilePage());
         }
 
         protected override void OnStart()
