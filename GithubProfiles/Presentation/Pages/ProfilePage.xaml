@@ -8,7 +8,7 @@
     Title="Github Profile"
     Visual="Material">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Padding="20">
                 <Entry
                     IsEnabled="{Binding IsBusy, Converter={Converters:InverseBoolConverter}}"

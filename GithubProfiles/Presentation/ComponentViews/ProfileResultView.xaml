@@ -35,7 +35,9 @@
                 HeightRequest="160"
                 ItemsSource="{Binding Profile.TopRepoList}"
                 RowHeight="40"
-                SeparatorVisibility="None" />
+                SelectionMode="None"
+                SeparatorVisibility="None"
+                VerticalScrollBarVisibility="Never" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

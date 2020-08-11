@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -46,8 +47,29 @@ namespace GithubProfiles.Services.Api
 
             Profile result = await Task.Run(() =>
                 JsonConvert.DeserializeObject<Profile>(serialized, _serializerSettings));
+            result.TopRepoList = await GetGithubTopRepos(username);
+            return result;
+        }
 
-            return result;  
+        private async Task<IList<string>> GetGithubTopRepos(string username)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var uri = _baseUri + username + "/repos";
+            HttpResponseMessage response = await httpClient.GetAsync(uri);
+
+            await HandleResponse(response);
+            string serialized = await response.Content.ReadAsStringAsync();
+
+            var result = await Task.Run(() =>
+                JsonConvert.DeserializeObject<List<IDictionary<string, object>>>(serialized, _serializerSettings));
+
+            List<string> topRepos = new List<string>();
+
+            result.GetRange(0, result.Count < 4 ? result.Count : 4).ForEach((repo) => topRepos.Add((string)repo["name"]));
+
+            return topRepos;
         }
 
         private async Task HandleResponse(HttpResponseMessage response)
