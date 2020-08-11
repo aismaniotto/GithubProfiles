@@ -3,5 +3,10 @@
     x:Class="GithubProfiles.Presentation.ComponentViews.LoaderView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentView.Content />
+    <ContentView.Content>
+        <ActivityIndicator
+            x:Name="actInd"
+            IsRunning="True"
+            IsVisible="True" />
+    </ContentView.Content>
 </ContentView>

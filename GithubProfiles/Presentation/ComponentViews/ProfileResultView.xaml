@@ -3,5 +3,39 @@
     x:Class="GithubProfiles.Presentation.ComponentViews.ProfileResultView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentView.Content />
+    <ContentView.Content>
+        <StackLayout>
+            <Image Source="{Binding Profile.Avatar}" />
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Font="Bold,20" Text="Username: " />
+                        <Span Text="{Binding Profile.Username}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Font="Bold,20" Text="Followers: " />
+                        <Span Text="{Binding Profile.Followers}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Font="Bold,20" Text="Repositories count: " />
+                        <Span Text="{Binding Profile.RepoCount}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Font="Bold,20" Text="Top Repos: " />
+            <ListView
+                HeightRequest="160"
+                ItemsSource="{Binding Profile.TopRepoList}"
+                RowHeight="40"
+                SeparatorVisibility="None" />
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>

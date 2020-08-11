@@ -3,18 +3,21 @@
     x:Class="GithubProfiles.Presentation.Pages.ProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converters="clr-namespace:GithubProfiles.Presentation.Converters"
+    xmlns:componentviews="clr-namespace:GithubProfiles.Presentation.ComponentViews"
     Title="Github Profile"
     Visual="Material">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
-                <Entry Placeholder="Github user" />
-                <Label Text="Username" />
-                <Label Text="Avatar" />
-                <Label Text="Followers" />
-                <Label Text="RepoCount" />
-
-                <Label Text="Top repos:" />
+                <Entry
+                    IsEnabled="{Binding IsBusy, Converter={Converters:InverseBoolConverter}}"
+                    Placeholder="Github user"
+                    ReturnCommand="{Binding SearchProfileCommand}"
+                    ReturnType="Search"
+                    Text="{Binding Username}" />
+                <componentviews:LoaderView IsVisible="{Binding IsBusy}" />
+                <componentviews:ProfileResultView IsVisible="{Binding IsEmpty, Converter={Converters:InverseBoolConverter}}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
