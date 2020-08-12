@@ -25,5 +25,6 @@
     <Folder Include="Presentation\ComponentViews\" />
     <Folder Include="Services\Api\" />
     <Folder Include="Presentation\Converters\" />
+    <Folder Include="Themes\" />
   </ItemGroup>
 </Project>

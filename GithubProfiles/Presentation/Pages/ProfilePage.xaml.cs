@@ -9,6 +9,15 @@ namespace GithubProfiles.Presentation.Pages
         {
             InitializeComponent();
             BindingContext = new ProfileViewModel();
+
+            // declarin here to avoid triggering on first time set up
+            switchDarkTheme.Toggled += SwitchDarkTheme_Toggled;
+        }
+
+        private void SwitchDarkTheme_Toggled(object sender, ToggledEventArgs e)
+        {
+            // Switch doesnt have command property
+            ((ProfileViewModel)this.BindingContext).ChangeThemeCommand.Execute(null);
         }
     }
 }

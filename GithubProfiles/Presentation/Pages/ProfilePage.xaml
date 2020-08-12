@@ -3,21 +3,28 @@
     x:Class="GithubProfiles.Presentation.Pages.ProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Converters="clr-namespace:GithubProfiles.Presentation.Converters"
     xmlns:componentviews="clr-namespace:GithubProfiles.Presentation.ComponentViews"
+    xmlns:converters="clr-namespace:GithubProfiles.Presentation.Converters"
     Title="Github Profile"
     Visual="Material">
+    <ContentPage.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Padding="20">
+                <Switch
+                    x:Name="switchDarkTheme"
+                    HorizontalOptions="EndAndExpand"
+                    IsToggled="{Binding IsDarkTheme}" />
                 <Entry
-                    IsEnabled="{Binding IsBusy, Converter={Converters:InverseBoolConverter}}"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                     Placeholder="Github user"
                     ReturnCommand="{Binding SearchProfileCommand}"
                     ReturnType="Search"
                     Text="{Binding Username}" />
                 <componentviews:LoaderView IsVisible="{Binding IsBusy}" />
-                <componentviews:ProfileResultView IsVisible="{Binding IsEmpty, Converter={Converters:InverseBoolConverter}}" />
+                <componentviews:ProfileResultView IsVisible="{Binding IsEmpty, Converter={StaticResource InverseBoolConverter}}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

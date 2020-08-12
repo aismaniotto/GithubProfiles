@@ -1,4 +1,5 @@
 ﻿using GithubProfiles.Presentation.Pages;
+using GithubProfiles.Services;
 using Xamarin.Forms;
 
 namespace GithubProfiles
@@ -8,7 +9,7 @@ namespace GithubProfiles
         public App()
         {
             InitializeComponent();
-
+            ThemeManager.LoadTheme();
             MainPage = new NavigationPage(new ProfilePage());
         }
 

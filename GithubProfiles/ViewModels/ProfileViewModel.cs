@@ -5,12 +5,15 @@ using System.Windows.Input;
 using GithubProfiles.Entities;
 using GithubProfiles.Services.Api;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using GithubProfiles.Services;
 
 namespace GithubProfiles.ViewModels
 {
     public class ProfileViewModel : BaseViewModel
     {
         public ICommand SearchProfileCommand { get; private set; }
+        public ICommand ChangeThemeCommand { get; private set; }
 
         private string _username;
         public string Username
@@ -36,6 +39,13 @@ namespace GithubProfiles.ViewModels
             get { return _isEmpty; }
             set { SetProperty(ref _isEmpty, value); }
         }
+        public bool IsDarkTheme
+        {
+            get
+            {
+                return Preferences.Get("dark_theme", false);
+            }
+        }
 
         private GithubService _githubService;
 
@@ -43,6 +53,7 @@ namespace GithubProfiles.ViewModels
         {
             _githubService = new GithubService();
             SearchProfileCommand = new Command(SearchProfileCommandAction);
+            ChangeThemeCommand = new Command(ChangeThemeCommandAction);
         }
 
         private async void SearchProfileCommandAction()
@@ -85,6 +96,11 @@ namespace GithubProfiles.ViewModels
                 IsBusy = false;
             }
 
+        }
+
+        private void ChangeThemeCommandAction()
+        {
+            ThemeManager.SetTheme(!IsDarkTheme);
         }
     }
 }

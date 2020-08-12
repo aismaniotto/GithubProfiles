@@ -9,7 +9,7 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Font="Bold,20" Text="Username: " />
+                        <Span Font="Bold" Text="Username: " />
                         <Span Text="{Binding Profile.Username}" />
                     </FormattedString>
                 </Label.FormattedText>
@@ -17,7 +17,7 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Font="Bold,20" Text="Followers: " />
+                        <Span Font="Bold" Text="Followers: " />
                         <Span Text="{Binding Profile.Followers}" />
                     </FormattedString>
                 </Label.FormattedText>
@@ -25,19 +25,37 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Font="Bold,20" Text="Repositories count: " />
+                        <Span Font="Bold" Text="Repositories count: " />
                         <Span Text="{Binding Profile.RepoCount}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Font="Bold,20" Text="Top Repos: " />
+            <Label Font="Bold" Text="Top Repos: " />
             <ListView
-                HeightRequest="160"
+                BackgroundColor="Transparent"
+                HeightRequest="120"
                 ItemsSource="{Binding Profile.TopRepoList}"
-                RowHeight="40"
+                RowHeight="30"
                 SelectionMode="None"
                 SeparatorVisibility="None"
-                VerticalScrollBarVisibility="Never" />
+                VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Font="Bold" Text="  " />
+                                        <Span Font="Bold" Text="&#x2022;" />
+                                        <Span Font="Bold" Text=" " />
+                                        <Span Text="{Binding .}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentView.Content>
 </ContentView>
